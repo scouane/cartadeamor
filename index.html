@@ -56,6 +56,9 @@ body{background:#2a0f18;color:#ecdcc8}
 .reveal.in{opacity:1;transform:none}
 .beat{animation:beat 2.4s ease-in-out infinite}
 @keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.18)}30%{transform:scale(1)}45%{transform:scale(1.12)}}
+/* floating hearts */
+@keyframes floatUp{0%{transform:translateY(0) scale(0.6);opacity:1}100%{transform:translateY(-420px) scale(1.4);opacity:0}}
+.floating-heart{position:absolute;pointer-events:none;animation:floatUp 2.8s ease-out forwards;z-index:50;font-size:1.8rem;}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}
   .tape-scroll{overflow-x:auto}
@@ -64,6 +67,18 @@ body{background:#2a0f18;color:#ecdcc8}
 </style>
 </head>
 <body class="font-serif antialiased">
+
+<!-- CONTROLADOR DE MÚSICA DE FUNDO -->
+<div class="absolute top-4 right-4 z-50">
+  <button id="musicBtn" class="flex items-center gap-2 bg-mulberry/80 hover:bg-mulberry border border-gold/40 text-champagne px-4 py-2 rounded-full shadow-lg backdrop-blur-sm transition-all text-sm" aria-label="Tocar música de fundo">
+    <span id="musicIcon">🎵</span>
+    <span id="musicText" class="font-sans text-xs tracking-wider uppercase">Tocar Música</span>
+  </button>
+  <audio id="bgMusic" loop>
+    <!-- Substitui o link abaixo pelo link direto de um ficheiro .mp3 romântico se desejado -->
+    <source src="https://actions.google.com/sounds/v1/ambiences/romantic_ambiance.ogg" type="audio/ogg">
+  </audio>
+</div>
 
 <!-- HERO -->
 <header class="relative min-h-screen overflow-hidden flex items-end">
@@ -135,20 +150,55 @@ body{background:#2a0f18;color:#ecdcc8}
 </footer>
 
 <script>
-// carta
-const env=document.getElementById('envBtn'),letter=document.getElementById('letter');
+// controlo de música de fundo
+const musicBtn=document.getElementById('musicBtn'), bgMusic=document.getElementById('bgMusic'), musicIcon=document.getElementById('musicIcon'), musicText=document.getElementById('musicText');
+let isPlaying=false;
+musicBtn.addEventListener('click',()=>{
+  if(isPlaying){
+    bgMusic.pause();
+    musicIcon.textContent='🎵';
+    musicText.textContent='Tocar Música';
+  }else{
+    bgMusic.play().catch(()=>{});
+    musicIcon.textContent='⏸️';
+    musicText.textContent='Pausar Música';
+  }
+  isPlaying=!isPlaying;
+});
+
+// efeito de corações flutuantes ao abrir o envelope
+const env=document.getElementById('envBtn'), letter=document.getElementById('letter');
 env.addEventListener('click',()=>{
   const open=!env.classList.contains('open');
   env.classList.toggle('open',open);
   letter.classList.toggle('open',open);
   env.setAttribute('aria-expanded',open);
-  if(open) setTimeout(()=>letter.scrollIntoView({behavior:'smooth',block:'start'}),700);
+  
+  if(open){
+    setTimeout(()=>letter.scrollIntoView({behavior:'smooth',block:'start'}),700);
+    
+    // gerar corações flutuantes à volta do envelope
+    for(let i=0; i<12; i++){
+      setTimeout(()=>{
+        const heart=document.createElement('div');
+        heart.className='floating-heart';
+        heart.textContent=Math.random()>0.5 ? '❤️' : '💖';
+        const rect=env.getBoundingClientRect();
+        heart.style.left=(rect.left + rect.width/2 + (Math.random()*100 - 50)) + 'px';
+        heart.style.top=(rect.top + window.scrollY + rect.height/2) + 'px';
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(), 2800);
+      }, i * 120);
+    }
+  }
 });
+
 // duplicar tiras para loop contínuo
 ['strip1','strip2'].forEach(id=>{
   const s=document.getElementById(id);
   [...s.children].forEach(c=>{const k=c.cloneNode(true);k.setAttribute('aria-hidden','true');s.appendChild(k)});
 });
+
 // reveal ao rolar
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.2});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));

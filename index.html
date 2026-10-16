@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para a minha noiva 💌</title>
+<meta name="description" content="Uma carta de amor para a minha noiva.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{wine:'#2a0f18',mulberry:'#5a1f30',champagne:'#ecdcc8',gold:'#c9a15b',paper:'#f6ede1'},fontFamily:{script:['"Pinyon Script"','cursive'],serif:['"Cormorant Garamond"','Georgia','serif']}}}}
+</script>
+<style>
+html{scroll-behavior:smooth}
+body{background:#2a0f18;color:#ecdcc8}
+.hero-img{animation:settle 2.8s cubic-bezier(.2,.7,.2,1) both}
+@keyframes settle{from{transform:scale(1.12);filter:brightness(.4)}to{transform:scale(1);filter:brightness(1)}}
+.hero-in{animation:rise 1.4s .9s cubic-bezier(.2,.7,.2,1) both}
+.hero-in-2{animation:rise 1.4s 1.5s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+/* envelope */
+.env{perspective:900px}
+.flap{transform-origin:top;transition:transform .9s cubic-bezier(.6,0,.2,1),z-index 0s .45s;z-index:3}
+.env.open .flap{transform:rotateX(180deg);z-index:0}
+.seal{transition:opacity .4s,transform .6s}
+.env.open .seal{opacity:0;transform:scale(.4)}
+.letter-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows 1.4s cubic-bezier(.3,.7,.2,1)}
+.letter-wrap>div{overflow:hidden}
+.letter-wrap.open{grid-template-rows:1fr}
+.letter{opacity:0;transform:translateY(40px) rotate(-1deg);transition:opacity 1s .5s,transform 1.2s .5s cubic-bezier(.2,.7,.2,1)}
+.letter-wrap.open .letter{opacity:1;transform:none}
+.letter p{opacity:0;transform:translateY(12px);transition:opacity .9s,transform .9s}
+.letter-wrap.open .letter p{opacity:1;transform:none}
+.letter-wrap.open .letter p:nth-of-type(1){transition-delay:1.2s}
+.letter-wrap.open .letter p:nth-of-type(2){transition-delay:1.8s}
+.letter-wrap.open .letter p:nth-of-type(3){transition-delay:2.4s}
+.letter-wrap.open .letter p:nth-of-type(4){transition-delay:3s}
+.letter-wrap.open .letter p:nth-of-type(5){transition-delay:3.6s}
+.letter-wrap.open .letter p:nth-of-type(6){transition-delay:4.2s}
+.letter-wrap.open .letter p:nth-of-type(7){transition-delay:4.8s}
+/* film strips */
+.strip{display:flex;gap:14px;width:max-content;animation:slide 60s linear infinite;padding:34px 0}
+.strip.rev{animation-direction:reverse}
+.strip-box:hover .strip{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.frame{position:relative;height:20rem;flex:none;border-radius:2px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.45);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.frame:hover{transform:scale(1.05) rotate(-1deg)}
+.frame img{height:100%;width:auto;display:block}
+.tape{background:#120609;position:relative}
+.tape::before,.tape::after{content:"";position:absolute;left:0;right:0;height:14px;background:repeating-linear-gradient(90deg,transparent 0 10px,#ecdcc8 10px 22px,transparent 22px 32px);opacity:.85;-webkit-mask:linear-gradient(#000,#000);}
+.tape::before{top:10px}.tape::after{bottom:10px}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 1.2s,transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.beat{animation:beat 2.4s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.18)}30%{transform:scale(1)}45%{transform:scale(1.12)}}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .tape-scroll{overflow-x:auto}
+}
+:focus-visible{outline:2px solid #c9a15b;outline-offset:4px}
+</style>
+</head>
+<body class="font-serif antialiased">
+
+<!-- HERO -->
+<header class="relative min-h-screen overflow-hidden flex items-end">
+  <img src="src/images/casal.jpg" alt="Nós dois, de mãos dadas, a sorrir um para o outro" class="hero-img absolute inset-0 h-full w-full object-cover object-[50%_30%]">
+  <div class="absolute inset-0 bg-gradient-to-t from-wine via-wine/50 to-transparent"></div>
+  <div class="relative mx-auto w-full max-w-3xl px-6 pb-16 sm:pb-24 text-center">
+    <h1 class="hero-in font-script text-6xl sm:text-8xl text-champagne leading-tight drop-shadow-lg">Para a minha noiva</h1>
+    <p class="hero-in-2 mt-6 text-xl sm:text-2xl italic text-champagne/90 leading-relaxed">Não importa a quantidade de erros que possa cometer, te amo… e sempre escolho te amar todos os dias.</p>
+    <a href="#carta" class="hero-in-2 inline-block mt-10 text-gold text-lg hover:text-champagne transition-colors" aria-label="Ir para a carta">Abre a tua carta ↓</a>
+  </div>
+</header>
+
+<!-- CARTA -->
+<section id="carta" class="mx-auto max-w-2xl px-5 py-24 sm:py-32 text-center">
+  <h2 class="reveal font-script text-5xl sm:text-6xl text-gold">Uma carta para ti</h2>
+  <p class="reveal mt-3 italic text-champagne/70">Toca no envelope</p>
+
+  <div class="mt-12 flex justify-center">
+    <button id="envBtn" class="env group relative w-72 sm:w-80 h-48 sm:h-52 focus:outline-none" aria-expanded="false" aria-controls="letter" aria-label="Abrir a carta">
+      <div class="absolute inset-0 rounded-md bg-gradient-to-b from-[#7a2a3f] to-mulberry shadow-2xl shadow-black/50"></div>
+      <div class="absolute inset-x-0 bottom-0 h-full overflow-hidden rounded-md z-[2] pointer-events-none">
+        <div class="absolute inset-0" style="background:linear-gradient(to top right,transparent 49.5%,rgba(0,0,0,.25) 50%) left/50% 100% no-repeat,linear-gradient(to top left,transparent 49.5%,rgba(0,0,0,.25) 50%) right/50% 100% no-repeat"></div>
+      </div>
+      <div class="flap absolute inset-x-0 top-0 h-28 sm:h-32 bg-[#8a3248] shadow-lg" style="clip-path:polygon(0 0,100% 0,50% 100%)"></div>
+      <div class="seal beat absolute left-1/2 top-[6.4rem] sm:top-[7rem] -translate-x-1/2 -translate-y-1/2 z-[4] text-4xl" aria-hidden="true">💌</div>
+    </button>
+  </div>
+
+  <div id="letter" class="letter-wrap mt-6" role="region" aria-label="Carta de amor">
+    <div>
+      <article class="letter relative mx-auto mt-10 max-w-xl rounded-sm bg-paper px-7 py-12 sm:px-14 sm:py-16 text-left text-[#3a1b24] shadow-2xl shadow-black/60 text-lg sm:text-xl leading-[1.85]">
+        <p class="font-script text-4xl text-mulberry mb-8">Minha noiva,</p>
+        <p class="italic">Não importa a quantidade de erros que possa cometer, te amo… e sempre escolho te amar todos os dias.</p>
+        <p class="mt-6">Amar-te também significa reconhecer quando falho e ter coragem de melhorar. Não posso apagar o que aconteceu, mas posso aprender com isso e demonstrar-te, através das minhas atitudes, que o teu coração é precioso para mim. Amo-te!</p>
+        <p class="mt-6">Às vezes, sinto que nenhuma palavra é suficientemente bonita para expressar o que o meu coração sente por ti. Tu és a mulher com quem sonho partilhar os meus dias, construir uma família e envelhecer de mãos dadas.</p>
+        <p class="mt-6">Amo o teu jeito de ser, a tua presença na minha vida e a felicidade que sinto quando penso no nosso futuro. Entre tantas pessoas neste mundo, o meu coração encontrou em ti alguém especial, alguém com quem desejo escrever uma linda história de amor.</p>
+        <p class="mt-6">Quero que sejas sempre a minha companheira, a minha melhor amiga e a mulher que estará ao meu lado em cada capítulo da nossa história. Se a vida me permitisse escolher mil vezes, mil vezes escolheria a ti.</p>
+        <p class="mt-6">Amo-te, minha noiva, hoje, amanhã e em todos os dias que Deus nos permitir viver juntos.</p>
+        <p class="mt-10 text-right font-script text-4xl text-mulberry">Para sempre teu ♥</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TIRAS DE FOTOS -->
+<section class="py-16 sm:py-24 overflow-hidden" aria-label="Fotografias">
+  <h2 class="reveal text-center font-script text-5xl sm:text-6xl text-gold px-5">A nossa história em fotos</h2>
+  <div class="strip-box tape-scroll tape mt-12">
+    <div class="strip" id="strip1">
+      <figure class="frame"><img src="src/images/foto1.jpg" alt="Foto 1" loading="lazy"></figure>
+      <figure class="frame"><img src="src/images/foto2.jpg" alt="Foto 2" loading="lazy"></figure>
+      <figure class="frame"><img src="src/images/foto3.jpg" alt="Foto 3" loading="lazy"></figure>
+    </div>
+  </div>
+  <div class="strip-box tape-scroll tape mt-6">
+    <div class="strip rev" id="strip2">
+      <figure class="frame"><img src="src/images/foto4.jpg" alt="Foto 4" loading="lazy"></figure>
+      <figure class="frame"><img src="src/images/foto5.jpg" alt="Foto 5" loading="lazy"></figure>
+      <figure class="frame"><img src="src/images/foto6.jpg" alt="Foto 6" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- FECHO -->
+<footer class="px-6 pt-10 pb-24 text-center">
+  <img src="src/images/casal.jpg" alt="" class="reveal mx-auto h-56 w-56 sm:h-72 sm:w-72 rounded-full object-cover object-[50%_30%] ring-4 ring-gold/70 ring-offset-8 ring-offset-wine shadow-2xl shadow-black/60">
+  <p class="reveal mt-12 font-script text-5xl sm:text-6xl text-champagne">Se a vida me permitisse escolher mil vezes,<br class="hidden sm:block"> mil vezes escolheria a ti.</p>
+  <p class="reveal mt-8 text-gold text-3xl beat inline-block" aria-hidden="true">♥</p>
+</footer>
+
+<script>
+// carta
+const env=document.getElementById('envBtn'),letter=document.getElementById('letter');
+env.addEventListener('click',()=>{
+  const open=!env.classList.contains('open');
+  env.classList.toggle('open',open);
+  letter.classList.toggle('open',open);
+  env.setAttribute('aria-expanded',open);
+  if(open) setTimeout(()=>letter.scrollIntoView({behavior:'smooth',block:'start'}),700);
+});
+// duplicar tiras para loop contínuo
+['strip1','strip2'].forEach(id=>{
+  const s=document.getElementById(id);
+  [...s.children].forEach(c=>{const k=c.cloneNode(true);k.setAttribute('aria-hidden','true');s.appendChild(k)});
+});
+// reveal ao rolar
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.2});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

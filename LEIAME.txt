@@ -1,0 +1,5 @@
+Como publicar no GitHub Pages:
+1. Crie um repositório no GitHub (ex.: carta-de-amor).
+2. Envie index.html e a pasta images/ para a raiz do repositório.
+3. Settings > Pages > Source: "Deploy from a branch" > Branch: main, pasta "/ (root)" > Save.
+4. Em 1-2 minutos o site fica em https://SEU-USUARIO.github.io/carta-de-amor/
